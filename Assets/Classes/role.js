@@ -1,26 +1,21 @@
-class Employee {
-  constructor(firstName, lastName, roleID, managerID) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.roleID = roleID;
-    this.managerID = managerID
+class Role {
+  constructor(title, salary, departmentID) {
+    this.title = title;
+    this.salary = salary;
+    this.departmentID = departmentID;
   }
 
-  getFirstName() {
-    return this.firstName;
+  getTitle() {
+    return this.title;
   }
 
-  getLastName() {
-    return this.lastName;
+  getSalary() {
+    return this.salary;
   }
 
-  getRoleId() {
-    return this.roleID;
-  }
-
-  getManagerID() {
-    return this.managerID;
+  getDepartmentId() {
+    return this.departmentID;
   }
 }
 
-module.exports = Employee;
+module.exports = Role;
