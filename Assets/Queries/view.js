@@ -1,10 +1,11 @@
-var inquirer = require("inquirer");
 var mysql = require("mysql");
 var cTable = require("console.table");
-const Department = require("../Classes/department");
-const Employee = require("../Classes/employee");
-const Role = require("../Classes/role");
+var Department = require("../Classes/department");
+var Employee = require("../Classes/employee");
+var Role = require("../Classes/role");
+var startServer = require("../Js/startServer");
 
+// creates variable to link to the proper database
 var connection = mysql.createConnection({
   host: "localhost",
 
@@ -19,18 +20,24 @@ var connection = mysql.createConnection({
   database: "company_db"
 });
 
-
 module.exports = {
   viewEmployees: function () {
     connection.query("SELECT * FROM employee", function(err, res) {
-      console.log(res);
+      console.table(res);
+       });
+       connection.end();
+       startServer.beginServer();
+  },
+  viewRoles: function () {
+    connection.query("SELECT * FROM roles", function(err, res) {
+      console.table(res);
        });
        connection.end();
   },
-  viewRolse: function () {
-
-  },
   viewDepartments: function () {
-
+    connection.query("SELECT * FROM department", function(err, res) {
+      console.table(res);
+       });
+       connection.end();
   }
 }
