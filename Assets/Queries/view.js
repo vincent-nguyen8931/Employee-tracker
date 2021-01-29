@@ -19,22 +19,34 @@ var connection = mysql.createConnection({
 module.exports = {
   viewEmployees: function () {
     var query ="SELECT employee.employeeID, employee.firstName, employee.lastName, roles.title, department.departmentName, roles.salary, employee.managerID ";
-    query +="from employee ";
-    query +="join roles on employee.roleID=roles.roleID ";
-    query +="join department on department.departmentID=roles.departmentID ";
-    query +="order by employee.employeeID";
+    query += "from employee ";
+    query += "join roles on employee.roleID=roles.roleID ";
+    query += "join department on department.departmentID=roles.departmentID ";
+    query += "order by employee.employeeID";
 
     connection.query(query, function (err, res) {
       console.table(res);
     });
   },
   viewRoles: function () {
-    connection.query("SELECT * FROM roles", function (err, res) {
+    var query ="SELECT employee.employeeID, employee.firstName, employee.lastName, roles.title, department.departmentName, roles.salary, employee.managerID ";
+    query += "from employee ";
+    query += "join roles on employee.roleID=roles.roleID ";
+    query += "join department on department.departmentID=roles.departmentID ";
+    query += "order by roles.title";
+
+    connection.query(query, function (err, res) {
       console.table(res);
     });
   },
   viewDepartments: function () {
-    connection.query("SELECT * FROM department", function (err, res) {
+    var query ="SELECT employee.employeeID, employee.firstName, employee.lastName, roles.title, department.departmentName, roles.salary, employee.managerID ";
+    query += "from employee ";
+    query += "join roles on employee.roleID=roles.roleID ";
+    query += "join department on department.departmentID=roles.departmentID ";
+    query += "order by department.departmentName";
+
+    connection.query(query, function (err, res) {
       console.table(res);
     });
   }
