@@ -27,6 +27,7 @@ module.exports = {
        });
        connection.end();
        startServer.beginServer();
+       
   },
   viewRoles: function () {
     connection.query("SELECT * FROM roles", function(err, res) {

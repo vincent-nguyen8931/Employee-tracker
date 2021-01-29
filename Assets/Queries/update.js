@@ -20,4 +20,3 @@ var connection = mysql.createConnection({
   database: "company_db"
 });
 
-startServer.beginServer();
