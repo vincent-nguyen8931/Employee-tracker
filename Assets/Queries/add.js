@@ -2,7 +2,7 @@ var mysql = require("mysql");
 var Department = require("../Classes/department");
 var Employee = require("../Classes/employee");
 var Role = require("../Classes/role");
-var startServer = require("../Js/startServer");
+
 
 // creates variable to link to the proper database
 var connection = mysql.createConnection({
@@ -22,7 +22,6 @@ var connection = mysql.createConnection({
 module.exports = {
   addEmployee: function () {
 console.log("hello")
-startServer.beginServer();
   },
   addRole: function () {
 

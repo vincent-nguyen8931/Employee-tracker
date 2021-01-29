@@ -3,7 +3,6 @@ var cTable = require("console.table");
 var Department = require("../Classes/department");
 var Employee = require("../Classes/employee");
 var Role = require("../Classes/role");
-var startServer = require("../Js/startServer");
 
 // creates variable to link to the proper database
 var connection = mysql.createConnection({
@@ -20,3 +19,15 @@ var connection = mysql.createConnection({
   database: "company_db"
 });
 
+module.exports = {
+  viewEmployees: function () {
+    connection.query("SELECT * FROM employee", function (err, res) {
+      console.table(res);
+    });
+  },
+  exitApplication: function () {
+    for (i = 0 ; i < 100; i++){
+      connection.end();
+    }
+  }
+}
