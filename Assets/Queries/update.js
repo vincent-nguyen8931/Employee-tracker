@@ -26,8 +26,8 @@ module.exports = {
     });
   },
   exitApplication: function () {
-    for (i = 0 ; i < 100; i++){
-      connection.end();
-    }
+    console.log("Bye!")
+    connection.end();
+    process.exit();
   }
 }
