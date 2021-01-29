@@ -49,6 +49,6 @@ VALUES
 ("Beatrice", "Simmons", 2);
 ("Timothy", "Jerry", 3)
 
-select * from employee;
-select * from department;
-select * from roles;
+SELECT * from employee;
+SELECT * from department;
+SELECT * from roles;

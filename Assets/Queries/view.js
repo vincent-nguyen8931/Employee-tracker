@@ -19,10 +19,10 @@ var connection = mysql.createConnection({
 module.exports = {
   viewEmployees: function () {
     var query ="SELECT employee.employeeID, employee.firstName, employee.lastName, roles.title, department.departmentName, roles.salary, employee.managerID ";
-    query += "from employee ";
-    query += "join roles on employee.roleID=roles.roleID ";
-    query += "join department on department.departmentID=roles.departmentID ";
-    query += "order by employee.employeeID";
+    query += "FROM employee ";
+    query += "JOIN roles on employee.roleID=roles.roleID ";
+    query += "JOIN department on department.departmentID=roles.departmentID ";
+    query += "ORDER by employee.employeeID";
 
     connection.query(query, function (err, res) {
       console.table(res);
@@ -30,10 +30,10 @@ module.exports = {
   },
   viewRoles: function () {
     var query ="SELECT employee.employeeID, employee.firstName, employee.lastName, roles.title, department.departmentName, roles.salary, employee.managerID ";
-    query += "from employee ";
-    query += "join roles on employee.roleID=roles.roleID ";
-    query += "join department on department.departmentID=roles.departmentID ";
-    query += "order by roles.title";
+    query += "FROM employee ";
+    query += "JOIN roles on employee.roleID=roles.roleID ";
+    query += "JOIN department on department.departmentID=roles.departmentID ";
+    query += "ORDER by roles.title";
 
     connection.query(query, function (err, res) {
       console.table(res);
@@ -41,10 +41,10 @@ module.exports = {
   },
   viewDepartments: function () {
     var query ="SELECT employee.employeeID, employee.firstName, employee.lastName, roles.title, department.departmentName, roles.salary, employee.managerID ";
-    query += "from employee ";
-    query += "join roles on employee.roleID=roles.roleID ";
-    query += "join department on department.departmentID=roles.departmentID ";
-    query += "order by department.departmentName";
+    query += "FROM employee ";
+    query += "JOIN roles on employee.roleID=roles.roleID ";
+    query += "JOIN department on department.departmentID=roles.departmentID ";
+    query += "ORDER by department.departmentName";
 
     connection.query(query, function (err, res) {
       console.table(res);
