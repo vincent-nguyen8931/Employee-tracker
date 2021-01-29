@@ -1,9 +1,9 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var cTable = require("console.table");
-var add = require("/Assets/Queries/add");
-var update = require("/Assets/Queries/update");
-var view = require("/Assets/Queries/view");
+var add = require("./Assets/Queries/add");
+var update = require("./Assets/Queries/update");
+var view = require("./Assets/Queries/view");
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -19,8 +19,8 @@ var connection = mysql.createConnection({
   database: "company_db"
 });
 
-connection.connect(function (err) {
-  if (err) throw err;
+// connection.connect(function (err) {
+  // if (err) throw err;
   inquirer.prompt({
     name: "action",
     type: "list",
@@ -29,9 +29,9 @@ connection.connect(function (err) {
       "Add Employee(s)",
       "Add Role(s)",
       "Add Department(s)",
+      "View All Employees",
       "View All Roles",
       "View All Departments",
-      "View All Employees",
       "Update Employee's role"
     ]
   })
@@ -49,6 +49,10 @@ connection.connect(function (err) {
           addDepartment();
           break;
 
+        case "View All Employees":
+          view.viewEmployees();
+          break;
+
         case "View All Roles":
           viewAllRoles();
           break;
@@ -57,9 +61,7 @@ connection.connect(function (err) {
           viewAllDepartments();
           break;
 
-        case "View All Employees":
-          viewAllEmployees();
-          break;
+
 
         case "Update Employee's role":
           updateEmployeeRole();
@@ -67,5 +69,5 @@ connection.connect(function (err) {
 
       }
     })
-});
+// });
 
