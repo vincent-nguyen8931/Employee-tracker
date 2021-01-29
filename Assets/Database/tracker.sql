@@ -30,7 +30,6 @@ CREATE TABLE employee (
   -- FOREIGN KEY (manager_id) REFERENCES manager(manager_id) --
 );
 
-
 INSERT INTO department (departmentName)
 VALUES 
 ("Human Resources"),
@@ -49,4 +48,6 @@ VALUES
 ("Joe", "Smith", 1),
 ("Beatrice", "Simmons", 2);
 
-
+select * from employee;
+select * from department;
+select * from roles;
