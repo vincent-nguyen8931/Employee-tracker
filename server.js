@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
   database: "company_db"
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) throw err;
   inquirer.prompt({
     name: "action",
@@ -35,10 +35,37 @@ connection.connect(function(err) {
       "Update Employee's role"
     ]
   })
-  .then(function(answer) {
-    switch (answer.action) {
-      
-    }
-  })
+    .then(function (answer) {
+      switch (answer.action) {
+        case "Add Employee(s)":
+          addEmployee();
+          break;
+
+        case "Add Role(s)":
+          addRole();
+          break;
+
+        case "Add Department(s)":
+          addDepartment();
+          break;
+
+        case "View All Roles":
+          viewAllRoles();
+          break;
+
+        case "View All Departments":
+          viewAllDepartments();
+          break;
+
+        case "View All Employees":
+          viewAllEmployees();
+          break;
+
+        case "Update Employee's role":
+          updateEmployeeRole();
+          break;
+
+      }
+    })
 });
 
