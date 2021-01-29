@@ -29,23 +29,3 @@ CREATE TABLE department (
   departmentName VARCHAR NOT NULL,
   PRIMARY KEY (departmentID)
 );
-
-
-CREATE TABLE Orders (
-    OrderID int NOT NULL,
-    OrderNumber int NOT NULL,
-    PersonID int,
-    PRIMARY KEY (OrderID),
-    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
-);
-
-
-
-INSERT INTO cast (charName, coolness, attitude)
-VALUES ("Jake Peralta", 90, "Careless");
-
-INSERT INTO cast (charName, coolness, attitude)
-VALUES ("Gina Linetti", 100, "Chaotic");
-
-INSERT INTO cast (charName, coolness, attitude)
-VALUES ("Amy Santiago", 90, "Perfectionist");
