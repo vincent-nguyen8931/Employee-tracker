@@ -3,8 +3,13 @@ var add = require("./Assets/Queries/add");
 var view = require("./Assets/Queries/view");
 var update = require("./Assets/Queries/update");
 
+// var myPromise = new Promise(function (resolve, reject) {
+//   add.addEmployee();
+// });
+
+
 // Prompts user to make a selection of what action to take among the given choices.
-function start() {
+async function start() {
   inquirer.prompt({
     name: "action",
     type: "list",
@@ -24,9 +29,9 @@ function start() {
       switch (answer.action) {
         case "Add Employee(s)":
           add.addEmployee();
-          setTimeout(function () {
-            start();
-          }, 500);
+          // setTimeout(function () {
+          //   start();
+          // }, 20000);
           break;
 
         case "Add Role(s)":

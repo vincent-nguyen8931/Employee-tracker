@@ -22,7 +22,14 @@ var connection = mysql.createConnection({
 
 module.exports = {
   addEmployee: function () {
-    inquirer.prompt(
+  var choiceArr = [];
+  connection.query("SELECT title FROM roles", function (err, res) {
+    // console.log(res.length);
+    for (i = 0; i < res.length; i++) {
+      choiceArr.push(res[i].title);
+    }
+  })
+    inquirer.prompt([
       {
         name: "firstName",
         type: "input",
@@ -37,20 +44,17 @@ module.exports = {
         name: "title",
         type: "list",
         message: "Choose the employee's title",
-        choices: [
-          connection.query("SELECT title FROM roles", function (err, res) {
-            for (i = 0; i < res.length; i++){
-              res[i].title.toString();
-            }
-          })
+        choices: [choiceArr
+        
         ]
       }
-    )
+    ])
       .then(function (answer) {
         var query = "INSERT INTO employee (firstName, lastName, roleID) "
         query += "VALUES (" + answer.firstName + " ," + answer.lastName + " ," + answer.title + ");"
         connection.query(query, function (err, res) {
           console.table(res);
+          // console.log(answer);
         })
       })
   },
