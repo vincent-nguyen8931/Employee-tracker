@@ -47,6 +47,7 @@ VALUES
 ("Sarah", "Johnson", 1),
 ("Joe", "Smith", 1),
 ("Beatrice", "Simmons", 2);
+("Timothy", "Jerry", 3)
 
 select * from employee;
 select * from department;
