@@ -6,21 +6,22 @@ USE Company_DB;
 
 CREATE TABLE employee (
   employeeID INT NOT NULL AUTO_INCREMENT,
-  first_name VARCHAR(45) NOT NULL,
-  last_name VARCHAR(45) NOT NULL,
-  rold_id INT(10) NOT NULL,
-  manager_id INT(10) NULL 
+  firstName VARCHAR(45) NOT NULL,
+  lastName VARCHAR(45) NOT NULL,
+  roleID INT(10) NOT NULL,
+  managerID INT(10) NULL 
   PRIMARY KEY (employeeID)
   FOREIGN KEY (roleID) REFERENCES roles(roleID)
-  FOREIGN KEY (departmentID) REFERENCES department(departmentID)
+  -- FOREIGN KEY (manager_id) REFERENCES manager(manager_id)
 );
 
 CREATE TABLE roles (
   roleID INT NOT NULL AUTO_INCREMENT,
-  charName VARCHAR(45) NOT NULL,
-  coolness INTEGER(5) NOT NULL,
-  attitude VARCHAR(45) NOT NULL,
-  PRIMARY KEY (id)
+  title VARCHAR(45) NOT NULL,
+  salary INT(10) NOT NULL,
+  departmentID INT(10) NOT NULL,
+  PRIMARY KEY (roleID)
+  FOREIGN KEY (departmentID) REFERENCES department(departmentID)
 );
 
 CREATE TABLE department (
