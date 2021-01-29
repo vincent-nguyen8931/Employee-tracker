@@ -3,7 +3,7 @@ class Employee {
     this.firstName = firstName;
     this.lastName = lastName;
     this.roleID = roleID;
-    this.managerID = managerID
+    this.managerID = managerID;
   }
 
   getFirstName() {
