@@ -37,11 +37,11 @@ Below is the link to the video demonstration the working application. <br />
 Features
 ------------------
 
-The user has the capablity to input employee name, role, and department information into this tracker. They may also create new department and roles as they desire. Upon adding new department and roles, when adding another employee, those roles and departments will appear as choices to apply to the employee along with existing roles and departments. The user may also update employee's role should that employee change roles.
+The user has the capablity to input employee name, role, department, and manager information into this tracker. They may also create new department and roles as they desire. Upon adding new department and roles, those roles and departments will appear among the present list of choices to apply to the new employee. The user may also update employee's role should that employee change roles.
 
 Lessons learned
 ---------------------
-Update employee is currenlt not functional and it will take a while to undo the logic behind what is breaking the code.
+Update employee is currently not functional and it will take a while to undo the logic behind what is breaking the code. At present, the person's first name, last name, and role ID have been received from the query but there is not a method to change this role id into the new one given by the user. 
 
 Credits
 ---------------
