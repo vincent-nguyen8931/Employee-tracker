@@ -189,8 +189,25 @@ function addEmployee() {
   }
 
   function addDepartment() {
-
+    inquirer.prompt([
+      {
+        name: "deptName",
+        type: "input",
+        message: "What is the department name?",
+      }
+    ])
+      .then(function (answer) {
+          connection.query("INSERT INTO department SET ?", 
+          {
+            departmentName: answer.deptName
+          }, function (err, res) {
+            if (err) throw err;
+            console.log("Department successfully added.");
+            start();
+        })
+      });
   };
+  
 
 
 
