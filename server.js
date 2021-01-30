@@ -1,15 +1,28 @@
 var inquirer = require("inquirer");
-var add = require("./Assets/Queries/add");
+var mysql = require("mysql");
+var Department = require("./Assets/Classes/department");
+var Employee = require("./Assets/Classes/employee");
+var Role = require("./Assets/Classes/role");
 var view = require("./Assets/Queries/view");
 var update = require("./Assets/Queries/update");
 
-// var myPromise = new Promise(function (resolve, reject) {
-//   add.addEmployee();
-// });
+// creates variable to link to the proper database
+var connection = mysql.createConnection({
+  host: "localhost",
 
+  // Your port; if not 3306
+  port: 3306,
+
+  // Your username
+  user: "root",
+
+  // Your password
+  password: "password",
+  database: "company_db"
+});
 
 // Prompts user to make a selection of what action to take among the given choices.
-async function start() {
+function start() {
   inquirer.prompt({
     name: "action",
     type: "list",
@@ -28,28 +41,19 @@ async function start() {
     .then(function (answer) {
       switch (answer.action) {
         case "Add Employee(s)":
-          add.addEmployee();
-          // setTimeout(function () {
-          //   start();
-          // }, 20000);
+          addEmployee();
           break;
 
         case "Add Role(s)":
-          add.addRole();
-          setTimeout(function () {
-            start();
-          }, 500);
+          addRole();
           break;
 
         case "Add Department(s)":
-          add.addDepartment();
-          setTimeout(function () {
-            start();
-          }, 500);
+          addDepartment();
           break;
 
         case "View All Employees":
-          view.viewEmployees();
+          view.viewEmployees
           setTimeout(function () {
             start();
           }, 500);
@@ -71,9 +75,6 @@ async function start() {
 
         case "Update Employee's role":
           update.updateEmployeeRole();
-          setTimeout(function () {
-            start();
-          }, 500);
           break;
 
         case "Exit Application":
@@ -84,6 +85,51 @@ async function start() {
 }
 start();
 
+function addEmployee() {
+  // var choiceArr = [];
+  // connection.query("SELECT title FROM roles", function (err, res) {
+  //   // console.log(res.length);
+  //   for (i = 0; i < res.length; i++) {
+  //     choiceArr.push(res[i].title);
+  //   }
+  // })
+    inquirer.prompt([
+      {
+        name: "firstName",
+        type: "input",
+        message: "What is the employee's first name?",
+      },
+      {
+        name: "lastName",
+        type: "input",
+        message: "What is the employee's last name",
+      },
+      {
+        name: "title",
+        type: "list",
+        message: "Choose the employee's title",
+        choices: ["Intern"
+        
+        ]
+      }
+    ])
+      .then(function (answer) {
+        // var query = "INSERT INTO employee (firstName, lastName, roleID) "
+        // query += "VALUES (" + answer.firstName + " ," + answer.lastName + " ," + answer.title + ");"
+        connection.query("select * from employee", function (err, res) {
+          console.table(res);
+          start();
+        })
+      })
+  };
+
+  function addRole() {
+
+  };
+
+  function addDepartment() {
+
+  };
 
 
 
