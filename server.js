@@ -113,8 +113,19 @@ function addEmployee() {
     ])
       .then(function (answer) {
         
-        console.log("answer:");
-        console.log(typeof answer.firstName);
+        connection.query("SELECT roleID FROM roles WHERE title=?", [answer.title], function (err, res) {
+          if (err) throw err;
+          connection.query("INSERT INTO employee SET ?", 
+          {
+            firstName: answer.firstName, 
+            lastName: answer.lastName,
+            roleID:  res[0].roleID
+            // answer.title
+          }, function (err, res) {
+            if (err) throw err;
+            console.log("Employee successfully added.");
+            start();
+        })
         // Try out in the future
         // var employeeAdding = new Employee (answer.firstName, answer.lastName, answer.title);
     
@@ -122,21 +133,60 @@ function addEmployee() {
 // console.log("employeeAdding:");
 // console.log(strEmployee);
 
-        var query = "INSERT INTO employee (firstName, lastName, roleID) ";
-        query += "VALUES (" + answer.firstName + ", " + answer.lastName + ", " + answer.title + ");";
+        // var query = "INSERT INTO employee SET ?";
+        // query += "VALUES (?, ?);";
 
-        console.log("Quiery:")
-        console.log(query)
+        // console.log("Quiery:")
+        // console.log(query)
         
-        connection.query(query, function (err, res) {
-          start();
+    
         })
       })
   };
 
   function addRole() {
-
-  };
+    // creates array and fills it with the names of all the departments in the department table. This array will be used to populate choices when selecting a department.
+    var deptArr = [];
+  connection.query("SELECT departmentName FROM department", function (err, res) {
+    for (i = 0; i < res.length; i++) {
+      deptArr.push(res[i].departmentName);
+    }
+  })
+    inquirer.prompt([
+      {
+        name: "roleTitle",
+        type: "input",
+        message: "What is the role title?",
+      },
+      {
+        name: "salary",
+        type: "input",
+        message: "What is the role's salary",
+      },
+      {
+        name: "deptChoice",
+        type: "list",
+        message: "Choose the department this role belongs to:",
+        choices: deptArr
+      }
+    ])
+      .then(function (answer) {
+        
+        connection.query("SELECT departmentID FROM department WHERE departmentName=?", [answer.deptChoice], function (err, res) {
+          if (err) throw err;
+          connection.query("INSERT INTO roles SET ?", 
+          {
+            title: answer.roleTitle, 
+            salary: answer.salary,
+            departmentID:  res[0].departmentID
+          }, function (err, res) {
+            if (err) throw err;
+            console.log("Role successfully added.");
+            start();
+        })
+      });
+  });
+  }
 
   function addDepartment() {
 

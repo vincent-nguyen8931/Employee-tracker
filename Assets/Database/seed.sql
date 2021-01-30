@@ -34,20 +34,27 @@ INSERT INTO department (departmentName)
 VALUES 
 ("Human Resources"),
 ("Bacon Eaters"),
-("Pig Buyers");
+("Pig Buyers"),
+("Bacon Prepper"),
+("Bacon Seller");
+
 
 INSERT INTO roles (title, salary, departmentID)
 VALUES 
 ("Intern", 20000, 1),
 ("Entry Eater", 30000, 2),
-("Entry Buyer", 35000, 3);
+("Entry Buyer", 35000, 3),
+("Senior Prepper", 30000, 4),
+("Senior Seller", 30000, 5);
+
 
 INSERT INTO employee (firstName, lastName, roleID)
 VALUES 
 ("Sarah", "Johnson", 1),
-("Joe", "Smith", 1),
-("Beatrice", "Simmons", 2);
-("Timothy", "Jerry", 3)
+("Joe", "Smith", 4),
+("Beatrice", "Simmons", 2),
+("Timothy", "Jerry", 3);
+
 
 SELECT * from employee;
 SELECT * from department;
