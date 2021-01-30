@@ -1,5 +1,6 @@
 var inquirer = require("inquirer");
 var mysql = require("mysql");
+var cTable = require("console.table");
 var Department = require("./Assets/Classes/department");
 var Employee = require("./Assets/Classes/employee");
 var Role = require("./Assets/Classes/role");
@@ -53,7 +54,7 @@ function start() {
           break;
 
         case "View All Employees":
-          view.viewEmployees
+          view.viewEmployees();
           setTimeout(function () {
             start();
           }, 500);
@@ -86,13 +87,12 @@ function start() {
 start();
 
 function addEmployee() {
-  // var choiceArr = [];
-  // connection.query("SELECT title FROM roles", function (err, res) {
-  //   // console.log(res.length);
-  //   for (i = 0; i < res.length; i++) {
-  //     choiceArr.push(res[i].title);
-  //   }
-  // })
+  var choiceArr = [];
+  connection.query("SELECT title FROM roles", function (err, res) {
+    for (i = 0; i < res.length; i++) {
+      choiceArr.push(res[i].title);
+    }
+  })
     inquirer.prompt([
       {
         name: "firstName",
@@ -108,16 +108,27 @@ function addEmployee() {
         name: "title",
         type: "list",
         message: "Choose the employee's title",
-        choices: ["Intern"
-        
-        ]
+        choices: choiceArr
       }
     ])
       .then(function (answer) {
-        // var query = "INSERT INTO employee (firstName, lastName, roleID) "
-        // query += "VALUES (" + answer.firstName + " ," + answer.lastName + " ," + answer.title + ");"
-        connection.query("select * from employee", function (err, res) {
-          console.table(res);
+        
+        console.log("answer:");
+        console.log(typeof answer.firstName);
+        // Try out in the future
+        // var employeeAdding = new Employee (answer.firstName, answer.lastName, answer.title);
+    
+// var strEmployee = employeeAdding.toString();
+// console.log("employeeAdding:");
+// console.log(strEmployee);
+
+        var query = "INSERT INTO employee (firstName, lastName, roleID) ";
+        query += "VALUES (" + answer.firstName + ", " + answer.lastName + ", " + answer.title + ");";
+
+        console.log("Quiery:")
+        console.log(query)
+        
+        connection.query(query, function (err, res) {
           start();
         })
       })
